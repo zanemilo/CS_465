@@ -13,7 +13,7 @@ var apiRouter = require('./app_api/routes/index');
 var handlebars = require('hbs');
 
 // Bring in the database
-var apiRouter = require('./app_api/routes/index');
+require('./app_api/models/db');
 
 var app = express();
 
