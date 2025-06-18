@@ -38,7 +38,8 @@ export class TripListingComponent implements OnInit {
         console.log(this.message);
       },
       error: (error: any) => {
-        console.log('Error: ' + error);
+        console.error('Error Loading Trips: ' + error);
+        console.log('Error details:', JSON.stringify(error, null, 2));
       }
     })
   }
