@@ -9,3 +9,7 @@ export interface trip {
     image: string,
     description: string,
 }
+
+// Instances of this interface will be used to transfer HTML form data to the component for
+// rendering as well as between components and the REST endpoint. Angular will
+// automatically marshal the data back and forth between JSON and JavaScript objects.
