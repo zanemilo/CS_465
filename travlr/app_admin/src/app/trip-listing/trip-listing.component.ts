@@ -6,6 +6,8 @@ import { TripCardComponent } from '../trip-card/trip-card.component';
 import { Trip } from '../models/trip'; // Import the Trip interface if needed
 import { TripDataService } from '../services/trip-data.service'; // Import the service if you plan to use it
 
+import { Router } from '@angular/router';
+
 @Component({
   selector: 'app-trip-listing',
   standalone: true,
@@ -19,8 +21,12 @@ export class TripListingComponent implements OnInit {
   trips!: Trip[]; // Declare trips as an array of Trip interface
   message: string = 'Loading trips...'; // Message to display while loading
 
-  constructor(private tripDataService: TripDataService) { 
+  constructor(private tripDataService: TripDataService, private router: Router) { 
     console.log('trip-listing constructor');
+  }
+
+  public addTrip(): void {
+    this.router.navigate(['add-trip']);
   }
 
   private getStuff(): void {
