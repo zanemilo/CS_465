@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { trips } from '../data/trips';
 import { TripCardComponent } from '../trip-card/trip-card.component';
+import { AuthenticationService } from '../services/authentication.service'; // Import the authentication service if needed
+
 
 import { Trip } from '../models/trip'; // Import the Trip interface if needed
 import { TripDataService } from '../services/trip-data.service'; // Import the service if you plan to use it
@@ -21,13 +23,19 @@ export class TripListingComponent implements OnInit {
   trips!: Trip[]; // Declare trips as an array of Trip interface
   message: string = 'Loading trips...'; // Message to display while loading
 
-  constructor(private tripDataService: TripDataService, private router: Router) { 
+  constructor(
+    private tripDataService: TripDataService,
+    private router: Router,
+    private authenticationService: AuthenticationService // Inject the authentication service
+    ) { 
     console.log('trip-listing constructor');
   }
 
   public addTrip(): void {
     this.router.navigate(['add-trip']);
   }
+
+  
 
   private getStuff(): void {
     this.tripDataService.getTrips()
@@ -51,9 +59,14 @@ export class TripListingComponent implements OnInit {
   }
 
 
+
   ngOnInit(): void {
     console.log('trip-listing ngOnInit');
     this.getStuff();
   }
+
+   public isLoggedIn() {
+  return this.authenticationService.isLoggedIn();
+}
 
 }
