@@ -36,12 +36,12 @@ export class TripDataService {
 
   getTrip(tripCode: string) : Observable<Trip[]> {
     // console.log("Inside TripDataService::getTrips");
-    return this.http.get<Trip[]>(this.baseUrl + '/' + tripCode);
+    return this.http.get<Trip[]>(this.baseUrl + '/trips/' + tripCode);
   }
 
   updateTrip(formData: Trip) : Observable<Trip> {
     // console.log("Inside TripDataService::addTrips");
-    return this.http.put<Trip>(this.baseUrl + '/' + formData.code, formData);
+    return this.http.put<Trip>(this.baseUrl + '/trips/' + formData.code, formData);
   }
 
   // Call to our /login endpoint, returns JWT
