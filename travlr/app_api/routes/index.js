@@ -15,6 +15,11 @@ router
   .get(tripsController.tripsList) // GET Method routes tripList
   .post(authenticateJWT, tripsController.tripsAddTrip); // POST Method to add a trip (protected)
 
+// define route for login endpoint
+router
+  .route("/login")
+  .post(authController.login); // POST Method to login user
+
 // GET: /trips/:tripCode - lists a single trip
 router
   .route("/trips/:tripCode")
