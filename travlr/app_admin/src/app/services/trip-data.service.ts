@@ -1,6 +1,8 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { AuthResponse } from '../models/auth-response';
+import { User } from '../models/user';
 
 import { Trip } from '../models/trip'; // Ensure this import matches your model definition
 
@@ -10,7 +12,7 @@ import { Trip } from '../models/trip'; // Ensure this import matches your model 
 
 
 export class TripDataService {
-
+  private baseUrl = '/api';
   constructor(private http: HttpClient) { }
   url = 'http://localhost:3000/api/trips';
 
@@ -35,5 +37,19 @@ export class TripDataService {
   updateTrip(formData: Trip) : Observable<Trip> {
     // console.log("Inside TripDataService::addTrips");
     return this.http.put<Trip>(this.url + '/' + formData.code, formData);
+  }
+
+  public login(user: User, passwd: string): Observable<AuthResponse> {
+    return this.http.post<AuthResponse>(
+      `${this.baseUrl}/login`,
+      { email: user.email, password: passwd }
+    );
+  }
+
+  public register(user: User, passwd: string): Observable<AuthResponse> {
+    return this.http.post<AuthResponse>(
+      `${this.baseUrl}/register`,
+      { email: user.email, name: user.name, password: passwd }
+    );
   }
 }
