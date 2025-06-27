@@ -22,7 +22,7 @@ export class TripDataService {
   baseUrl = 'http://localhost:3000/api';
 
   getTrips(): Observable<Trip[]> {
-    return this.http.get<Trip[]>(this.baseUrl);
+    return this.http.get<Trip[]>(this.baseUrl + '/trips');
   }
 
   // This will satisfy the binding for the add-trip component 
